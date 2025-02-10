@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Items</title>
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #e67e22;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+
+        .cart {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+            width: 100%;
+        }
+        #cartItems ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        #cartItems li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cart-buttons{
+            display: inline;
+        }
+
+        #main-container {
+            width: 100%;
+            height:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #bottom-buttons{
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        /* For tablets (screens 768px and larger) */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .cart {
+        margin: 10px auto;
+        padding: 20px;
+        width: 80%; /* Adjust width for better layout on tablets */
+    }
+
+    #cartItems li {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align content to the start */
+    }
+
+    #cartItems li img {
+        width: 250px; /* Adjust product image size */
+        height: 250px;
+    }
+
+    .cart-actions {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 5px; /* Reduce gap between buttons */
+    }
+
+    #bottom-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px;
+    }
+
+    button {
+        width: 100%; /* Make buttons full width for easier tapping */
+    }
+}
+
+/* For smartphones (screens 480px and larger) */
+@media screen and (min-width: 480px) and (max-width: 768px) {
+    .cart {
+        width: 90%; /* Reduce cart width */
+        padding: 15px;
+    }
+
+    #cartItems li {
+        flex-direction: column;
+        align-items: center; /* Center-align content */
+    }
+
+    #cartItems li img {
+        width: 200px; /* Reduce product image size further */
+        height: 200px;
+    }
+
+    .cart-actions {
+        flex-direction: row; /* Keep buttons in a row */
+        flex-wrap: wrap; /* Allow wrapping for small screens */
+        justify-content: center;
+    }
+
+    #bottom-buttons {
+        flex-direction: column; /* Stack bottom buttons */
+        gap: 10px;
+    }
+
+    button {
+        font-size: 14px; /* Adjust button text size */
+    }
+}
+
+/* For small smartphones (screens below 480px) */
+@media screen and (max-width: 479px) {
+    .cart {
+        width: 95%; /* Use almost full width of the screen */
+        margin: 5px auto;
+        padding: 10px;
+    }
+
+    #cartItems li {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #cartItems li img {
+        width: 150px; /* Further reduce image size */
+        height: 150px;
+    }
+
+    .cart-actions {
+        flex-direction: column; /* Stack buttons */
+        gap: 5px;
+    }
+
+    #bottom-buttons {
+        flex-direction: column; /* Align buttons vertically */
+        gap: 8px;
+    }
+
+    button {
+        width: 100%; /* Full width buttons for easy interaction */
+        font-size: 12px; /* Reduce text size slightly */
+    }
+
+    #cart_total_wrapper {
+        text-align: center; /* Center-align total price text */
+    }
+}
+    </style>
+</head>
+<body>
+<div id="main-container">
+    
+     <!-- Cart -->
+     <div class="cart">
+                <!-- Display alert message if 'message' exists -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red; font-weight: bold; text-align: center;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <h2 style="text-align: center;">Your Cart</h2>
+        <ul id="cartItems">
+            <!-- Loop through cart items -->
+            {% for item in cart_items %}
+            <li id="cart-item-{{ item.product.id }}">
+
+                <!-- Product Image -->
+                <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 300px; height: 300px;">
+
+                
+                <span>{{ item.product.name }}</span> <!-- Product Name -->
+
+                {% if user.is_authenticated %}
+                <div class="cart-actions">
+                    <!-- Form for + Button to increase quantity -->
+                    <form method="post" action="{% url 'add_to_cart' item.product.id %}">
+                        {% csrf_token %}
+                        <button type="button" onclick="addToCart('{{ item.product.id }}')" class="quantity-btn">+</button>
+                    </form>
+
+                    <!-- Display Quantity -->
+                    <span id="quantity-{{ item.product.id }}" class="quantity-display" style="margin-top: 15px;">{{ item.quantity }}</span>
+
+                    <!-- Form for - Button to decrease quantity -->
+                    <form method="post" action="{% url 'remove_from_cart' item.product.id %}">
+                        {% csrf_token %}
+                        <button type="button" onclick="removeFromCart('{{ item.product.id }}')" class="quantity-btn">-</button>
+                    </form>
+
+                    <!-- Form for Removing all of a specific item -->
+                    <form method="POST" action="{% url 'remove_all_from_cart' item.product.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove All</button>
+                    </form>
+                </div>
+                {% else %}
+                <p><a href="{% url 'login' %}">Login to manage your cart</a></p>
+                {% endif %}
+
+            </li>
+            {% endfor %}
+        </ul>
+
+        <p id="cart_total_wrapper">Total: ₹<span id="cart_total">{{ cart_total }}</span></p>
+
+        <div id="bottom-buttons">
+        <!-- Checkout Form -->
+        
+        <a href="{% url 'checkout' %}"><button>Check-Out</button></a>
+       
+        <button><a style="text-decoration: none; color: white;" href="{% url 'product_list' 'all' %}">Go Back to Products</a></button>
+
+        <!-- Clear Cart Form -->
+        <form class="cart-buttons" method="POST" action="{% url 'clear_cart' %}">
+            {% csrf_token %}
+            <button type="submit" style="float: right;">Clear Entire Cart</button>
+        </form>
+        </div>
+
+    </div>
+   
+</div>
+
+
+
+
+<script>
+    // JavaScript function to handle the add to cart functionality
+    function addToCart(productId) {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+        
+        // Generate the correct URL dynamically with the productId
+        const url = "{% url 'add_to_cart' 0 %}".replace('0', productId);
+
+        // Send AJAX request to add the product to the cart
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken, // Pass CSRF token for security
+                'X-Requested-With': 'XMLHttpRequest'  // Specify it's an AJAX request
+            },
+            body: JSON.stringify({}) // Send empty object for now, can include other data if needed
+        })
+        .then(response => response.json())  // Parse the response as JSON
+        .then(data => {
+            if (data.success) {
+                // Update the quantity display with the updated quantity
+                document.getElementById(`quantity-${productId}`).innerText = data.updated_quantity;
+            } else {
+                console.error('Failed to add to cart');
+            }
+
+            updateCart()
+        })
+        .catch(error => console.error('Error:', error)); // Log any errors that occur
+    }
+
+
+
+// Function to decrease product quantity in the cart
+function removeFromCart(productId) {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+    
+    const url = "{% url 'remove_from_cart' 0 %}".replace('0', productId); // Generate the correct URL
+
+    // Send AJAX request to remove product from the cart
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken, // Pass CSRF token for security
+            'X-Requested-With': 'XMLHttpRequest' // Specify it's an AJAX request
+        },
+        body: JSON.stringify({}) // Send an empty object for now
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the quantity display
+            const quantityElement = document.getElementById(`quantity-${productId}`);
+            if (data.updated_quantity > 0) {
+                quantityElement.innerText = data.updated_quantity; // Update quantity
+            } else {
+                // Remove the item from the cart if quantity is 0
+                const cartItemElement = quantityElement.closest('li');
+                cartItemElement.remove();
+            }
+
+            updateCart()
+
+
+            // Update the cart total
+            const cartTotalElement = document.getElementById('cart_total');
+            if (cartTotalElement) {
+                cartTotalElement.innerText = data.cart_total.toFixed(2); // Update total price
+            }
+        } else {
+            console.error('Failed to remove from cart');
+        }
+
+    })
+    .catch(error => console.error('Error:', error)); // Log any errors that occur
+}
+
+// Function to decrease product quantity in the cart (e.g., after a + or - button is clicked)
+function updateCart() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+
+    // Send AJAX request to get the updated cart total
+    fetch("{% url 'carts' %}", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken, // Pass CSRF token for security
+            'X-Requested-With': 'XMLHttpRequest' // Specify it's an AJAX request
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.cart_total !== undefined) {
+            // Update the total price in the cart
+            const cartTotalElement = document.getElementById('cart_total');
+            if (cartTotalElement) {
+                cartTotalElement.innerText = data.cart_total; // Update total price
+            }
+        } else {
+            console.error('Failed to fetch updated cart total');
+        }
+    })
+    .catch(error => console.error('Error:', error)); // Log any errors that occur
+}
+
+
+</script>
+</body>
+</html>
