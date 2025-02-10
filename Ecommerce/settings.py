@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,17 +83,21 @@ WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-DATABASES = {
-                        'default': {
-                            'ENGINE': 'django.db.backends.mysql',
-                            'NAME': 'ecommerce_project',    # database name is Ecommerce_project
-                            'USER': 'root',
-                            'PASSWORD': '123456',  # -> password of mysql (i.e 123456)
-                            'HOST':'localhost',
-                            'PORT':'3306',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+                            'default': {
+                                'ENGINE': 'django.db.backends.mysql',
+                                'NAME': 'ecommerce_project',    # database name is Ecommerce_project
+                                'USER': 'root',
+                                'PASSWORD': '123456',  # -> password of mysql (i.e 123456)
+                                'HOST':'localhost',
+                                'PORT':'3306',
+                            }
                         }
-                    }
 
 
 # Password validation
