@@ -77,7 +77,7 @@ def product_list(request,category=None):
         products = Products.objects.all()
         # print('the products are: ', products)
     else:
-        products = Products.objects.filter(category=category)
+        products = Products.objects.filter(category__iexact=category)
         # print('the products are: ', products)
 
 
