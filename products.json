@@ -1,0 +1,182 @@
+[
+{
+  "model": "Ecommerce_App.products",
+  "pk": 1,
+  "fields": {
+    "name": "iPhone 16 Pro Max",
+    "category": "Phone",
+    "original_price": 185000,
+    "discount_price": 170200,
+    "discount_percentage": "8% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/619oqSJVY5L._AC_UY327_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 2,
+  "fields": {
+    "name": "Samsung Galaxy S24 Ultra",
+    "category": "Phone",
+    "original_price": 145000,
+    "discount_price": 124700,
+    "discount_percentage": "14% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/71CXhVhpM0L._AC_UY327_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 3,
+  "fields": {
+    "name": "OnePlus 12",
+    "category": "Phone",
+    "original_price": 70000,
+    "discount_price": 65100,
+    "discount_percentage": "7% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/41+WyW0KOgL._SY300_SX300_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 4,
+  "fields": {
+    "name": "Google Pixel 9 Pro",
+    "category": "Phone",
+    "original_price": 125000,
+    "discount_price": 115000,
+    "discount_percentage": "8% OFF",
+    "image_url": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/m/p/j/-original-imah5mtpdzrutn3c.jpeg?q=70"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 5,
+  "fields": {
+    "name": "Xiaomi 14 Pro",
+    "category": "Phone",
+    "original_price": 36000,
+    "discount_price": 32400,
+    "discount_percentage": "10% OFF",
+    "image_url": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/w/y/e/-original-imah7z8pugwfpcbe.jpeg?q=70"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 6,
+  "fields": {
+    "name": "Apple Watch Ultra 2",
+    "category": "Watch",
+    "original_price": 104900,
+    "discount_price": 92312,
+    "discount_percentage": "12% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/81fMq--1K1L._SL1500_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 7,
+  "fields": {
+    "name": "Samsung Galaxy Watch Ultra",
+    "category": "Watch",
+    "original_price": 70000,
+    "discount_price": 60200,
+    "discount_percentage": "14% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/81i1Vn-KQuL._AC_UL480_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 8,
+  "fields": {
+    "name": "OnePlus Watch 2",
+    "category": "Watch",
+    "original_price": 28000,
+    "discount_price": 19880,
+    "discount_percentage": "29% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/71I3RQGHDrL._AC_UL480_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 9,
+  "fields": {
+    "name": "Googel Pixel Watch 3",
+    "category": "Watch",
+    "original_price": 44000,
+    "discount_price": 43120,
+    "discount_percentage": "2% OFF",
+    "image_url": "https://media.croma.com/image/upload/v1725452219/Croma%20Assets/Wearable/Wearable%20Devices/Images/309631_ngjyfy.png"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 10,
+  "fields": {
+    "name": "Amazfit Balance",
+    "category": "Watch",
+    "original_price": 31000,
+    "discount_price": 20150,
+    "discount_percentage": "35% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/61tISuXDk2L._AC_UL480_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 11,
+  "fields": {
+    "name": "Apple iPad Pro 13",
+    "category": "tablet",
+    "original_price": 150000,
+    "discount_price": 136500,
+    "discount_percentage": "9% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/7131GFmmnCL._AC_UL480_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 12,
+  "fields": {
+    "name": "Samsung Galaxy Tab S10 Ultra",
+    "category": "tablet",
+    "original_price": 122000,
+    "discount_price": 108580,
+    "discount_percentage": "11% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/61KngwOUHKL._AC_UY327_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 13,
+  "fields": {
+    "name": "Lenovo Tab P12 Pro",
+    "category": "tablet",
+    "original_price": 85000,
+    "discount_price": 78200,
+    "discount_percentage": "8% OFF",
+    "image_url": "https://p3-ofp.static.pub/fes/cms/2023/02/22/5rhddw9d8vm9xfkexcwzvvi9lindg8985574.png"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 14,
+  "fields": {
+    "name": "Microsoft Surface Pro",
+    "category": "tablet",
+    "original_price": 166000,
+    "discount_price": 162680,
+    "discount_percentage": "2% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/51gCpv7DO4L._AC_UY327_FMwebp_QL65_.jpg"
+  }
+},
+{
+  "model": "Ecommerce_App.products",
+  "pk": 15,
+  "fields": {
+    "name": "Realme Pad Pro",
+    "category": "tablet",
+    "original_price": 30000,
+    "discount_price": 27000,
+    "discount_percentage": "10% OFF",
+    "image_url": "https://m.media-amazon.com/images/I/71jH01R-CgL._AC_UY327_FMwebp_QL65_.jpg"
+  }
+}
+]

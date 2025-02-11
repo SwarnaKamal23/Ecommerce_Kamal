@@ -83,21 +83,25 @@ WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-    }
-else:
-    DATABASES = {
-                            'default': {
-                                'ENGINE': 'django.db.backends.mysql',
-                                'NAME': 'ecommerce_project',    # database name is Ecommerce_project
-                                'USER': 'root',
-                                'PASSWORD': '123456',  # -> password of mysql (i.e 123456)
-                                'HOST':'localhost',
-                                'PORT':'3306',
-                            }
-                        }
+# if 'DATABASE_URL' in os.environ:
+#     DATABASES = {
+#         'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+#     }
+# else:
+#     DATABASES = {
+#                             'default': {
+#                                 'ENGINE': 'django.db.backends.mysql',
+#                                 'NAME': 'ecommerce_project',    # database name is Ecommerce_project
+#                                 'USER': 'root',
+#                                 'PASSWORD': '123456',  # -> password of mysql (i.e 123456)
+#                                 'HOST':'localhost',
+#                                 'PORT':'3306',
+#                             }
+#                         }
+DATABASES = {
+    'default': dj_database_url.config(default="postgresql://ecommerce_db_8kod_user:t8l6cEQfOJdxQSVGlQTHwE0yfRJo0YnZ@dpg-cul4j1jqf0us738q5kk0-a.oregon-postgres.render.com/ecommerce_db_8kod")
+}
+
 
 
 # Password validation
